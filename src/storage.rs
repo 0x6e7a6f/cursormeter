@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 use std::fs::File;
-use std::io::{Read, Write};
+use std::io::{ErrorKind, Read, Write};
 
 #[derive(Serialize, Deserialize)]
 pub struct Data {
@@ -9,8 +9,15 @@ pub struct Data {
 
 // Loads total distance from a JSON file
 pub fn load_distance() -> f64 {
-    let mut file =
-        File::open("distance.json").unwrap_or_else(|_| File::create("distance.json").unwrap());
+    let mut file = match File::open("distance.json") {
+        Ok(file) => file,
+        Err(ref error) if error.kind() == ErrorKind::NotFound => {
+            // If the file doesn't exist, create it and return 0.0 as the initial distance
+            return 0.0;
+        }
+        Err(error) => panic!("Problème d'ouverture du fichier: {:?}", error),
+    };
+
     let mut content = String::new();
     file.read_to_string(&mut content).unwrap();
 
@@ -21,6 +28,7 @@ pub fn load_distance() -> f64 {
     let data: Data = serde_json::from_str(&content).unwrap_or(Data {
         total_distance: 0.0,
     });
+
     data.total_distance
 }
 
