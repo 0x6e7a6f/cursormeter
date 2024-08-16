@@ -7,7 +7,7 @@ pub struct Data {
     pub total_distance: f64,
 }
 
-// Charge la distance accumulée à partir d'un fichier JSON
+// Loads total distance from a JSON file
 pub fn load_distance() -> f64 {
     let mut file =
         File::open("distance.json").unwrap_or_else(|_| File::create("distance.json").unwrap());
@@ -24,7 +24,7 @@ pub fn load_distance() -> f64 {
     data.total_distance
 }
 
-// Enregistre la distance accumulée dans un fichier JSON
+// Saves the accumulated distance in a JSON file
 pub fn save_distance(distance: f64) {
     let data = Data {
         total_distance: distance,

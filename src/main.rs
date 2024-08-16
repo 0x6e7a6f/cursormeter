@@ -5,10 +5,10 @@ use std::thread;
 use std::time::Duration;
 
 fn main() {
-    // Charger la distance totale précédemment enregistrée
+    // Load previously total distance
     let mut total_distance = storage::load_distance();
 
-    // Initialiser la position précédente de la souris
+    // Initialize previous cursor position at each loop iteration
     let mut previous_position = measurements::position();
 
     loop {
