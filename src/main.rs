@@ -19,13 +19,13 @@ fn main() {
 
         if total_distance >= 3779527.5591 {
             println!(
-                "Distance parcourue: {:.3} pixels (Total: {:.3} kilometers)",
+                "Distance covered: {:.3} pixels (Total: {:.3} kilometers)",
                 distance,
                 total_distance * 0.0000002645833
             );
         } else {
             println!(
-                "Distance parcourue: {:.3} pixels (Total: {:.3} meters)",
+                "Distance covered: {:.3} pixels (Total: {:.3} meters)",
                 distance,
                 total_distance * 0.0002645833
             );
