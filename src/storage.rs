@@ -15,7 +15,7 @@ pub fn load_distance() -> f64 {
             // If the file doesn't exist, create it and return 0.0 as the initial distance
             return 0.0;
         }
-        Err(error) => panic!("Problème d'ouverture du fichier: {:?}", error),
+        Err(error) => panic!("A problem occurred when opening the file: {:?}", error),
     };
 
     let mut content = String::new();
